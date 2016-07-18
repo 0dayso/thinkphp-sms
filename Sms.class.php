@@ -16,7 +16,7 @@
 
  */
 
-namespace ihacklog\Utils\Sms;
+namespace Ihacklog\Utils\Sms;
 
 abstract class Sms {
 

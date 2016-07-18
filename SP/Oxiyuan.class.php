@@ -7,15 +7,16 @@
  * Description: 熹源短信接口api
  *
  */
+namespace Ihacklog\Utils\Sms\SP;
 
-namespace ihacklog\Utils\Sms\SP;
+use Ihacklog\Utils\Sms\Sms;
 
 /**
  * Class Oxiyuan
  * @package ihacklog\Utils\Sms\SP
  */
 
-class Oxiyuan
+class Oxiyuan extends Sms
 {
     private $date_format = 'Y-m-d H:i:s';
 

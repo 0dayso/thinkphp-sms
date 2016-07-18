@@ -45,7 +45,7 @@ ALTER TABLE `sms`
 namespace Model;
 use Think\Model;
 
-use ihacklog\Utils\Sms\Sms;
+use Ihacklog\Utils\Sms\Sms;
 
 class SmsModel extends Model {
 

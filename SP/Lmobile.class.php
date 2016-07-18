@@ -28,9 +28,9 @@
  * Class lmobile_cn
  */
 
-namespace ihacklog\Utils\Sms\SP;
+namespace Ihacklog\Utils\Sms\SP;
 
-use ihacklog\Utils\Sms\Sms;
+use Ihacklog\Utils\Sms\Sms;
 
 class Lmobile extends Sms
 {
