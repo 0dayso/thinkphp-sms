@@ -2,13 +2,11 @@
 用于thinkphp (3.x) 的通用短信发送接口
 
 
+## 1.安装
 放在thinkphp源码的
 Library/Ihacklog/Utils 下面.
 
-
-simple usage:
-
-demo 配置：
+## 2.配置
 ```php
     'SMS' => array(
         'VERIFY_TIMEOUT' => 300, //认证超时时间(单位：秒)
@@ -36,7 +34,9 @@ demo 配置：
     ),
 ```   
 
-    test 
+## 3.使用举例
+
+### 简单例子
 ```php
 //----------------
 use Ihacklog\Utils\Sms\Sms;
@@ -55,7 +55,7 @@ use Ihacklog\Utils\Sms\Sms;
 ```
         
         
-complex demo:
+### 复杂例子（使用Model)
 ```php
 use Common\Model\SmsModel;
 use Ihacklog\Utils\Sms\Sms;
@@ -79,4 +79,54 @@ var_dump('code to send: '. $verifyCode);
 var_dump(D('Sms')->sendVerify($mobile, $verifyCode, '', SmsModel::CODE_TYPE_REG, 'web'));
 var_dump(D('Sms')->verify($mobile, '8833', SmsModel::CODE_TYPE_REG));
 var_dump(D('Sms')->getDbError());
+```
+
+## 4.如何添加自己的短信服务提供商？
+假设有短信服务提供商 `Foo`
+在 `Provider` 目录添加 `Foo.class.php`
+```php
+namespace Ihacklog\Utils\Sms\Provider;
+
+use Ihacklog\Utils\Sms\Sms;
+
+class Montnets extends Sms
+{
+    function __construct($config)
+    {
+        parent::__construct($config);
+        //初始化通用数据
+        $this->common_data = array(
+            'userId' => $this->get_username(),
+            'password' => $this->get_password(),
+        );
+    }
+
+
+    /**
+     * 必须自己实现的方法： 发送短信
+     */
+    public function send($mobile, $content, $extra_params = array())
+    {
+        //YOUR CODE HERE
+    }
+
+
+    /**
+     * 必须自己实现的方法： 获取账户余额
+     * @return mixed
+     */
+    public function get_balance()
+    {
+        //YOUR CODE HERE
+    }
+
+    /**
+     * 必须自己实现的方法： 获取已发送总条数
+     * @return mixed
+     */
+    public function get_sent_count()
+    {
+        //YOUR CODE HERE
+    }
+}
 ```
