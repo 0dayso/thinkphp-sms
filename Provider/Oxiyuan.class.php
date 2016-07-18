@@ -33,7 +33,7 @@ class Oxiyuan extends Sms
         parent::__construct($config);
         //初始化通用数据
         $this->common_data = array(
-            'userid' => $this->get_username(),
+            'userid' => $this->get_userid(),
             'account' => $this->get_account(),
             'password' => $this->get_password(),
         );
@@ -65,8 +65,9 @@ class Oxiyuan extends Sms
             return false;
         }
 //        $count = substr_count($mobile, ',') + 1;
-        $url = $this->get_api_url('send');
+        $url = $this->get_api_url();
         $data = array(
+            'action' => 'send',
             'mobile' => $mobile,
             'content' => $sms_content,
             'sendTime' => '',
@@ -94,7 +95,7 @@ class Oxiyuan extends Sms
      */
     public function get_balance()
     {
-        $url = $this->get_api_url('/');
+        $url = $this->get_api_url();
         $rs = $this->post($url, $this->common_data);
         $xml_ele = $this->parse_xml($rs);
         if ($xml_ele && ($xml_ele instanceof \SimpleXMLElement)) {
@@ -124,9 +125,9 @@ class Oxiyuan extends Sms
      * 获取配置中的用户名
      * @return string
      */
-    private function get_username()
+    private function get_userid()
     {
-        return $this->config('USERNAME');
+        return $this->config('USERID');
     }
 
     /**
@@ -143,9 +144,10 @@ class Oxiyuan extends Sms
      * @param string $function 需要调用的功能名称
      * @return string
      */
-    private function get_api_url($function = 'send')
+    private function get_api_url()
     {
-        return rtrim($this->config('API_URL'), '/') . '?action=' . $function;
+        $config_url = rtrim($this->config('API_URL'), '/');
+        return $config_url ? $config_url : $this->sendUrl;
     }
 
     /**

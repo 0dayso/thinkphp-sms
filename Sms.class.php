@@ -43,8 +43,8 @@ abstract class Sms {
         $sms_class = empty($sms_sp) ? self::$default : $sms_sp;
         self::$default = $sms_class;
         if (!isset(self::$instances[$sms_class]) || !(self::$instances[$sms_class] instanceof $sms_class) ) {
-            require_once dirname(__FILE__). DIRECTORY_SEPARATOR . 'SP' . DIRECTORY_SEPARATOR . $sms_class. '.class.php';
-            $sms_class =  '\\Ihacklog\\Sms\\Provider\\'. $sms_class;
+            require_once dirname(__FILE__). DIRECTORY_SEPARATOR . 'Provider' . DIRECTORY_SEPARATOR . $sms_class. '.class.php';
+            $sms_class =  '\\Ihacklog\\Utils\\Sms\\Provider\\'. $sms_class;
             self::$instances[$sms_class] = new $sms_class($config);
         }
         return self::$instances[$sms_class];
@@ -129,7 +129,7 @@ abstract class Sms {
      */
     public function log_err($err, $level = 'error', $category = 'sms')
     {
-        Think\Log::record($err, $level, $category);
+        \Think\Log::record($err, $level, $category);
     }
 
     /**
