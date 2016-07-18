@@ -44,7 +44,7 @@ abstract class Sms {
         self::$default = $sms_class;
         if (!isset(self::$instances[$sms_class]) || !(self::$instances[$sms_class] instanceof $sms_class) ) {
             require_once dirname(__FILE__). DIRECTORY_SEPARATOR . 'SP' . DIRECTORY_SEPARATOR . $sms_class. '.class.php';
-            $sms_class =  'ihacklog\\Sms\\Provider\\'. $sms_class;
+            $sms_class =  '\\Ihacklog\\Sms\\Provider\\'. $sms_class;
             self::$instances[$sms_class] = new $sms_class($config);
         }
         return self::$instances[$sms_class];
@@ -235,7 +235,7 @@ abstract class Sms {
             $err       = 'curl not enabled!';
             $error_out .= $err;
             $this->log_err($err);
-            throw new ErrorException('curl not enabled!');
+            throw new \ErrorException('curl not enabled!');
         }
     }
 

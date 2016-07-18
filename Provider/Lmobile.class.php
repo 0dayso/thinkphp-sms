@@ -28,7 +28,7 @@
  * Class lmobile_cn
  */
 
-namespace Ihacklog\Utils\Sms\SP;
+namespace Ihacklog\Utils\Sms\Provider;
 
 use Ihacklog\Utils\Sms\Sms;
 

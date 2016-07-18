@@ -7,7 +7,7 @@
  * Description: 熹源短信接口api
  *
  */
-namespace Ihacklog\Utils\Sms\SP;
+namespace Ihacklog\Utils\Sms\Provider;
 
 use Ihacklog\Utils\Sms\Sms;
 
