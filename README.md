@@ -54,3 +54,29 @@ use Ihacklog\Utils\Sms\Sms;
         var_dump($smsSendRs, $sms->get_errors());
 ```
         
+        
+complex demo:
+```php
+use Common\Model\SmsModel;
+use Ihacklog\Utils\Sms\Sms;
+
+echo "<h1>succ test:</h1>";
+$verifyCode = mt_rand(1000, 9999);
+var_dump('code to send: '. $verifyCode);
+var_dump(D('Sms')->sendVerify($mobile, $verifyCode, '', SmsModel::CODE_TYPE_REG, 'web'));
+var_dump(D('Sms')->verify($mobile, $verifyCode, SmsModel::CODE_TYPE_REG));
+var_dump(D('Sms')->verify($mobile, '8833', SmsModel::CODE_TYPE_REG));
+var_dump(D('Sms')->getDbError());
+```
+
+```php
+use Common\Model\SmsModel;
+use Ihacklog\Utils\Sms\Sms;
+
+echo "<h1>fail test:</h1>";
+$verifyCode = mt_rand(1000, 9999);
+var_dump('code to send: '. $verifyCode);
+var_dump(D('Sms')->sendVerify($mobile, $verifyCode, '', SmsModel::CODE_TYPE_REG, 'web'));
+var_dump(D('Sms')->verify($mobile, '8833', SmsModel::CODE_TYPE_REG));
+var_dump(D('Sms')->getDbError());
+```

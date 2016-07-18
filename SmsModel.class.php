@@ -273,7 +273,7 @@ class SmsModel extends Model {
         $smsSendRs = $sms->send($mobile, $content);
         if (false == $smsSendRs) {
             $err_arr = $sms->get_last_error();
-            $err_msg = 'sms_send_failed: sp:'. $masterSp . ', to:'.  $mobile . ', content: '. $content .
+            $err_msg = 'sms_send_failed: sp:'. $spName . ', to:'.  $mobile . ', content: '. $content .
                 ', sp_error_msg: '. $err_arr['msg'];
             Log::record($err_msg);
             $errorMsg = $err_msg;
