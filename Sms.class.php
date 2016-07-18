@@ -299,6 +299,12 @@ abstract class Sms {
     abstract function send($mobile, $content, $extra_params = array());
 
     /**
+     * 抽象方法： 获取账户余额
+     * @return mixed
+     */
+    abstract function get_balance();
+
+    /**
      * 获取已发送总条数
      * @return mixed
      */
