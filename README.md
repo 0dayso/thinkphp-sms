@@ -10,7 +10,7 @@ Oxiyuan 熹源短信接口
 
 ========================
 
-当前实现的功能 
+当前实现的功能
 1. 统一的短信发送和验证接口。不管后期换了哪家的接口，只需要更换配置和添加新的Provider文件即可。不需要修改代码。
 2. 发送操作(可以直接调用此api发送短信） 和 发送业务逻辑分离（也可以用Model发送）
 3. 短信模板支持
@@ -52,7 +52,7 @@ Library/Ihacklog/Utils 下面.
             'PASSWORD' => '密码',
         )
     ),
-```   
+```
 
 ## 3.使用举例
 
@@ -73,8 +73,8 @@ use Ihacklog\Utils\Sms\Sms;
         $smsSendRs = $sms->send($mobile, $content. '[Oxiyuan]');
         var_dump($smsSendRs, $sms->get_errors());
 ```
-        
-        
+
+
 ### 复杂例子（使用Model)
 ```php
 use Common\Model\SmsModel;
@@ -86,7 +86,7 @@ var_dump('code to send: '. $verifyCode);
 var_dump(D('Sms')->sendVerify($mobile, $verifyCode, '', SmsModel::CODE_TYPE_REG, 'web'));
 var_dump(D('Sms')->verify($mobile, $verifyCode, SmsModel::CODE_TYPE_REG));
 var_dump(D('Sms')->verify($mobile, '8833', SmsModel::CODE_TYPE_REG));
-var_dump(D('Sms')->getDbError());
+var_dump(D('Sms')->getError());
 ```
 
 ```php
@@ -98,7 +98,7 @@ $verifyCode = mt_rand(1000, 9999);
 var_dump('code to send: '. $verifyCode);
 var_dump(D('Sms')->sendVerify($mobile, $verifyCode, '', SmsModel::CODE_TYPE_REG, 'web'));
 var_dump(D('Sms')->verify($mobile, '8833', SmsModel::CODE_TYPE_REG));
-var_dump(D('Sms')->getDbError());
+var_dump(D('Sms')->getError());
 ```
 
 ## 4.如何添加自己的短信服务提供商？
@@ -109,7 +109,7 @@ namespace Ihacklog\Utils\Sms\Provider;
 
 use Ihacklog\Utils\Sms\Sms;
 
-class Montnets extends Sms
+class Foo extends Sms
 {
     function __construct($config)
     {
