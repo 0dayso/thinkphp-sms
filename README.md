@@ -3,14 +3,15 @@
 
 ## 0.简介
 当前支持的短信接口：
-lmobile
-sms.cn （云信）
-montnets 梦网短信接口
-Oxiyuan 熹源短信接口
+* lmobile
+* sms.cn （云信）
+* montnets 梦网短信接口
+* Oxiyuan 熹源短信接口
 
 ========================
 
 当前实现的功能
+
 1. 统一的短信发送和验证接口。不管后期换了哪家的接口，只需要更换配置和添加新的Provider文件即可。不需要修改代码。
 2. 发送操作(可以直接调用此api发送短信） 和 发送业务逻辑分离（也可以用Model发送）
 3. 短信模板支持
@@ -23,8 +24,25 @@ Oxiyuan 熹源短信接口
 ========================
 
 ## 1.安装
-放在thinkphp源码的
-Library/Ihacklog/Utils 下面.
+假设think-sms库文件放在项目根目录下的
+`Libs/Service/Ihacklog/Utils/Sms` 下面.
+
+```bash
+cd projectRootDir
+mkdir -p Libs/Service/Ihacklog/Utils
+cd Libs/Service/Ihacklog/Utils
+git clone https://github.com/ihacklog/thinkphp-sms.git Sms
+```
+
+则在主配置文件中写上：
+```php
+    return array(
+        /* 命名空间 */
+        'AUTOLOAD_NAMESPACE' => array(
+            'Ihacklog' => rtrim(APP_PATH, '/')  . '/../Libs/Service/Ihacklog',
+        ),
+    );
+```
 
 ## 2.配置
 ```php
