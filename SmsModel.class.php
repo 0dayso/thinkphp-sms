@@ -38,11 +38,11 @@ ALTER TABLE `sms`
 
 #       Author: 荒野无灯
 #      Version: 0.0.1
-#   LastChange: 2015-05-13 21:36:53
+#   LastChange: 2016-07-18 14:36:53
 #      History:
 =============================================================================*/
 
-namespace Model;
+namespace Common\Model;
 use Think\Model;
 
 use Ihacklog\Utils\Sms\Sms;
@@ -275,7 +275,7 @@ class SmsModel extends Model {
             $err_arr = $sms->get_last_error();
             $err_msg = 'sms_send_failed: sp:'. $spName . ', to:'.  $mobile . ', content: '. $content .
                 ', sp_error_msg: '. $err_arr['msg'];
-            Log::record($err_msg);
+            \Think\Log::record($err_msg);
             $errorMsg = $err_msg;
             return false;
         } else {
